@@ -1,6 +1,7 @@
 package com.kzq.study;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,7 @@ public class Mp4toYUVActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        JniTest.mp4toyuv(fileEdt.getText().toString());
+                        JniTest.mp4toyuv(Environment.getExternalStorageDirectory().getAbsolutePath(), fileEdt.getText().toString());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

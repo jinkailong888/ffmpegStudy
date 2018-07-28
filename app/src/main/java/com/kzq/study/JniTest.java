@@ -5,7 +5,7 @@ package com.kzq.study;
  **/
 public class JniTest {
 
-    public static native String mp4toyuv(String path);
+    public static native String mp4toyuv(String parentPath, String file);
 
     static {
         System.loadLibrary("avcodec-57");

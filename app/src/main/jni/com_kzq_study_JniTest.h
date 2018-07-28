@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_kzq_study_JniTest
  * Method:    mp4toyuv
- * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_kzq_study_JniTest_mp4toyuv
-  (JNIEnv *, jclass, jstring);
+  (JNIEnv *, jclass, jstring, jstring);
 
 #ifdef __cplusplus
 }

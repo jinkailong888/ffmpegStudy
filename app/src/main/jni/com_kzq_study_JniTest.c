@@ -35,12 +35,12 @@ char *Jstring2CStr(JNIEnv *env, jstring jstr) {
  * MP4解码为YUV数据
  * @param env
  * @param cls
- * @param path
+ * @param file
  * @return
  */
 
 JNIEXPORT jstring JNICALL Java_com_kzq_study_JniTest_mp4toyuv
-        (JNIEnv *env, jclass cls, jstring path) {
+        (JNIEnv *env, jclass cls, jstring parent, jstring file) {
 
     int videoindex, i;
     AVFormatContext *pFormatCtx;
@@ -54,9 +54,19 @@ JNIEXPORT jstring JNICALL Java_com_kzq_study_JniTest_mp4toyuv
     int ret, got_picture;
     struct SwsContext *img_convert_ctx;
 
-    const char *cpath = Jstring2CStr(env, path);
+    const char *cparent = Jstring2CStr(env, parent);
 
-    FILE *fp_yuv = fopen("/storage/emulated/0/DCIM/Camera/test.yuv", "wb+");
+    char *cfile = Jstring2CStr(env, file);
+
+    const char *cpath = strcat(cfile, cparent);
+
+    char *cyuv = strncpy(cyuv, cpath, strlen(cpath) - strlen(".apk"));
+
+    __android_log_print(ANDROID_LOG_DEBUG, "MP4toYUV",
+                        "parent path: %s, mp4 path: %s, yuv path: %s\n", cparent, cpath,
+                        strcat(cyuv, ".yuv"));
+
+    FILE *fp_yuv = fopen(strcat(cyuv, ".yuv"), "wb+");
 
     av_register_all();
     avformat_network_init();
